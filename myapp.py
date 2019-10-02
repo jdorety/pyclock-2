@@ -1,6 +1,6 @@
-from flask import Flask
-import time
-import unicornhat
+from flask import Flask, render_template
+from datetime import date, time, datetime
+from unicorn_helpers import test_flash
 
 app = Flask(__name__)
 
@@ -11,12 +11,19 @@ app = Flask(__name__)
 
 
 @app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/flash')
 def flash():
-    unicornhat.set_pixel(0, 0, 255, 255, 255)
-    unicornhat.show()
-    unicornhat.clear()
-    unicornhat.show()
-    return "That did it!"
+    test_flash()
+    return render_template('flash.html')
+
+
+@app.route('/time')
+def get_time(time=datetime.now()):
+    return render_template('time.html', time=time)
 
 
 if __name__ == '__main__':
