@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from datetime import date, time, datetime
 from unicorn_helpers import test_flash
+import clock
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ def flash():
 
 
 @app.route('/time')
-def get_time(time=datetime.now()):
+def get_time(time=datetime.now().strftime("%b-%d-%Y, %H-%M")):
     return render_template('time.html', time=time)
 
 
