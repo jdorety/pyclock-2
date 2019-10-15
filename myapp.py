@@ -12,6 +12,7 @@ app = Flask(__name__)
 time = Chrono()
 time.tick()
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
