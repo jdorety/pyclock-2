@@ -11,17 +11,27 @@ class Chrono:
         self.current_hour = self.current_time.tm_hour
         self.current_min = self.current_time.tm_min
         self.current_sec = self.current_time.tm_sec
+        self.daytime = bool
+        self.bedtime = [7, 0]
+        self.wakeup = [6, 0]
 
+        # TODO: remember to set checks for minutes later one 
 
     def tick(self):
         self.current_time = time.localtime()
         self.current_hour = self.current_time.tm_hour
         self.current_min = self.current_time.tm_min
         self.current_sec = self.current_time.tm_sec
-        
-        if 18 < self.current_hour < 7:
-            moon()
-        else:
-            sun()
+        self.check_time()
 
         threading.Timer(1, self.tick).start()
+
+    def check_time(self):
+        bt = self.bedtime
+        wu = self.wakeup
+        if ( wu[0] < self.current_hour < bt[0]) and self.daytime is not True:
+            self.daytime = not self.daytime
+            sun()
+        elif (wu[0] >= self.current_hour or self.current_hour>= wu[0]) and self.daytime:
+            self.daytime = not self.daytime
+            moon()
