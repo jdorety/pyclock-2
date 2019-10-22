@@ -25,12 +25,15 @@ class Chrono:
 
         threading.Timer(1, self.tick).start()
 
+
     def check_time(self):
         bt = self.bedtime
         wu = self.wakeup
-        if (wu[0] <= self.current_hour < bt[0]) and (wu[1] <= self.current_min < bt[1]) and self.daytime is not True:
-            self.daytime = not True  # toggle daytime to True
+        # if (wu[0] <= self.current_hour < bt[0]) and (wu[1] <= self.current_min < bt[1]) and self.daytime is not True:
+        if (wu[0] <= self.current_hour < bt[0]) and self.daytime is not True:
+            self.daytime = True  # toggle daytime to True
             sun()  # display sun on UnicornHat
-        elif ((wu[0] > self.current_hour and wu[1] > self.current_min) or (self.current_hour >= bt[0] and self.current_min >= bt[1])) and self.daytime:
-            self.daytime = not False  # set daytime to False
+        # elif ((wu[0] > self.current_hour and wu[1] > self.current_min) or (self.current_hour >= bt[0] and self.current_min >= bt[1])) and self.daytime:
+        elif (wu[0] > self.current_hour or self.current_hour >= bt[0]) and self.daytime:
+            self.daytime = False  # set daytime to False
             moon()  # display moon on UnicornHat
