@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from datetime import date, time, datetime
 from unicorn_helpers import test_flash
-import clock
+from chrono import Chrono
 
 app = Flask(__name__)
 
@@ -9,6 +9,8 @@ app = Flask(__name__)
 # @app.route('/')
 # def index():
 #     return "Hello World"
+time = Chrono()
+time.tick()
 
 
 @app.route('/')
