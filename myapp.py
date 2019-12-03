@@ -25,7 +25,7 @@ def flash():
 
 
 @app.route('/time')
-def get_time(time=datetime.now().strftime("%b-%d-%Y, %H-%M")):
+def get_time(time=datetime.now().strftime("%b-%d-%Y, %H:%M")):
     return render_template('time.html', time=time)
 
 
