@@ -24,7 +24,7 @@ github_username: kyullog
 
 # Build settings
 markdown: kramdown
-theme: type-on-strap
+theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
 # Exclude from processing.
