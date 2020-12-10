@@ -29,5 +29,10 @@ def get_time(time=datetime.now().strftime("%b-%d-%Y, %H:%M")):
     return render_template('time.html', time=time)
 
 
+@app.route('/config')
+def config_clock(hour=time.current_hour, min=time.current_min):
+    return render_template('config.html', hour=hour, min=min)
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
