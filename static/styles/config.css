@@ -1,0 +1,7 @@
+.time-select-row {
+  display: flex;
+}
+
+.time-select-row > div:not(:last-child) {
+  margin-right: 1rem;
+}

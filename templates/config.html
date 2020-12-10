@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href={{url_for('static',
+    filename='node_modules/bulma/css/bulma.min.css')}} />
+    <link rel="stylesheet" href={{url_for('static', filename='styles/config.css')}} />
+</head>
+
+<body>
+    <form>
+        <h3>Wakeup Time</h3>
+        <div class="time-select-row">
+            <div class="field">
+                <label class="label" for="wakeup-hour">Hour</label>
+                <select class="select" name="wakeup-hour" id="wakeup-hour"></select>
+            </div>
+            <div class="field">
+                <label class="label" for="wakeup-minute">Minute</label>
+                <select class="select" name="wakeup-minute" id="wakeup-minute"></select>
+            </div>
+        </div>
+    </form>
+    <p>Current Hour: {{hour}}</p>
+    <p>Current Minute: {{min}}</p>
+    <script src={{url_for('static', filename='scripts/config.js')}}></script>
+</body>
+
+</html>
