@@ -36,3 +36,10 @@ class Chrono:
         elif (wu[0] > time[0] or time[0] >= bt[0]) and self.daytime:
             self.daytime = False  # set daytime to False
             moon()  # display moon on UnicornHat
+
+    def change_bedtime(self, hour, minute):
+        if type(hour) == int and type(minute) == int:
+            self.bedtime = [hour, minute]
+            return { "success": True, "message": "Success!"}
+        else:
+            return { "success": False, "message": "Invalid params"}
