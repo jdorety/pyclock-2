@@ -9,8 +9,8 @@ app = Flask(__name__)
 # @app.route('/')
 # def index():
 #     return "Hello World"
-time = Chrono()
-time.tick()
+clock = Chrono(19, 0, 8, 0)
+clock.tick()
 
 
 @app.route('/')
@@ -27,7 +27,7 @@ def flash():
 @app.route('/time')
 def get_time():
     # right_now=datetime.now().strftime("%b-%d-%Y, %H:%M:%s")
-    right_now = f'{time.current_hour}:{time.current_min}:{time.current_sec}'
+    right_now = f'{clock.current_hour}:{clock.current_min}:{clock.current_sec}'
     return render_template('time.html', time=right_now)
 
 
@@ -35,23 +35,21 @@ def get_time():
 def bedtime():
     def convert_num(n):
         return str(n)
-    convert_bedtime = map(convert_num, time.bedtime)
-    bedtime_string = ":".join(convert_bedtime)
-    return render_template('bedtime.html', bedtime_display=bedtime_string)
+    bedtime_hour = (clock.bedtime // 60)
+    bedtime_min = (clock.bedtime % 60)
+    return render_template('bedtime.html', bedtime_display=f'{bedtime_hour}:{bedtime_min}')
 
 
 @app.route('/change_bedtime', methods= ["POST", "GET"])
 def change_bedtime():
-    print(request.method)
-    print(request.form)
     if request.method == 'GET':
         return f'Try using "/bedtime"'
     if request.method == "POST":
         form_data = request.form
         hour = int(form_data["hour"])
         minute = int(form_data["minute"])
-        response = time.change_bedtime(hour, minute)
-        return response.message
+        response = clock.change_bedtime(hour, minute)
+        return response["message"]
 
 
 if __name__ == '__main__':
