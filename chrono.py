@@ -2,6 +2,7 @@ import time
 import threading
 from moon import moon
 from sun import sun
+from christmas_tree import christmas_tree
 
 
 class Chrono:
@@ -12,17 +13,25 @@ class Chrono:
         self.current_hour = self.current_time.tm_hour
         self.current_min = self.current_time.tm_min
         self.current_sec = self.current_time.tm_sec
+        self.current_month = self.current_time.tm_mon
+        self.current_day = self.current_time.tm_min
         self.daytime = bool
         self.bedtime = self.convert_to_minutes(bedtime_hour, bedtime_minute)
         self.wakeup = self.convert_to_minutes(wakeup_hour, wakeup_minute)
 
     def tick(self):
         self.current_time = time.localtime()
-        self.display_time = self.current_time.strftime("%a, %b %d; %H:%M")
+        self.display_time = time.strftime("%a, %b %d; %H:%M")
         self.current_hour = self.current_time.tm_hour
         self.current_min = self.current_time.tm_min
         self.current_sec = self.current_time.tm_sec
+        # self.current_month = self.current_time.tm_mon
+        # self.current_day = self.current_time.tm_mday
+        self.current_month = 12
+        self.current_day = 25
+
         self.check_time()
+        print(self.current_month, self.current_day)
 
         threading.Timer(1, self.tick).start()
 
@@ -36,7 +45,7 @@ class Chrono:
         # if (wu[0] <= self.current_hour < bt[0]) and (wu[1] <= self.current_min < bt[1]) and self.daytime is not True:
         if (wu <= t < bt) and self.daytime is not True:
             self.daytime = True  # toggle daytime to True
-            sun()  # display sun on UnicornHat
+            self.determine_day_pic(self.current_month, self.current_day)  # display sun on UnicornHat
         # elif ((wu[0] > self.current_hour and wu[1] > self.current_min) or (self.current_hour >= bt[0] and self.current_min >= bt[1])) and self.daytime:
         elif (wu > t or t >= bt) and self.daytime:
             self.daytime = False  # set daytime to False
@@ -48,3 +57,9 @@ class Chrono:
             return { "success": True, "message": "Success!"}
         else:
             return { "success": False, "message": "Invalid params"}
+    
+    def determine_day_pic(self, month, day):
+        if (day == 25 and month ==12):
+            christmas_tree()
+        else:
+            sun()
