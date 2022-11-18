@@ -25,10 +25,10 @@ class Chrono:
         self.current_hour = self.current_time.tm_hour
         self.current_min = self.current_time.tm_min
         self.current_sec = self.current_time.tm_sec
-        # self.current_month = self.current_time.tm_mon
-        # self.current_day = self.current_time.tm_mday
-        self.current_month = 12
-        self.current_day = 25
+        self.current_month = self.current_time.tm_mon
+        self.current_day = self.current_time.tm_mday
+        # self.current_month = 12
+        # self.current_day = 25
 
         self.check_time()
         print(self.current_month, self.current_day)
@@ -47,7 +47,7 @@ class Chrono:
             self.daytime = True  # toggle daytime to True
             self.determine_day_pic(self.current_month, self.current_day)  # display sun on UnicornHat
         # elif ((wu[0] > self.current_hour and wu[1] > self.current_min) or (self.current_hour >= bt[0] and self.current_min >= bt[1])) and self.daytime:
-        elif (wu > t or t >= bt) and self.daytime:
+        elif (wu > t or t >= bt) and self.daytime is not False:
             self.daytime = False  # set daytime to False
             moon()  # display moon on UnicornHat
 
