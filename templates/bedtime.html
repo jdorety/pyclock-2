@@ -1,12 +1,29 @@
-<html>
+{% extends "base.html" %}
 
-<body>
-    <p>{{bedtime_display}}</p>
+{% block content %}
+<div>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <h2 class="title">Set Bedtime</h2>
+        </div>
+    </section>
+    <span>{{bedtime_display}}</span>
     <form action="/change_bedtime" method="POST">
-        <input id="hour_input" type="number" name="hour" />
-        <input id="minute_input" type="number" name="minute" />
+        <div class="columns">
+            <div class="column is-half">
+                <label id="hour">Hour</label>
+                <input aria-labelledby="hour" class="input is-primary" id="hour_input" type="number" max="23" min="0"
+                    name="hour" />
+            </div>
+            <div class="column is-half">
+                <label id="minute">Minute</label>
+                <input aria-labelledby="minute" class="input is-primary" id="minute_input" type="number" max="59"
+                    min="0" name="minute" />
+
+            </div>
+        </div>
         <input type="submit" value="Submit" />
     </form>
-</body>
+</div>
 
-</html>
+{% endblock %}

@@ -1,11 +1,13 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-    <link rel="stylesheet" href="/static/style.css" />
-</head>
+{% block content %}
+<section class="hero is-small is-primary">
+    <div class="hero-body">
+        <p class="title">
+            {{disp_time}}
+        </p>
 
-<body>
-    <h1>My Website</h1>
-</body>
+    </div>
+</section>
 
-</html>
+{% endblock %}

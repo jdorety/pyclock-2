@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PyClock 2 Configuration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
+
+</head>
+
+<body>
+    <nav>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/" class="navbar-item">
+                    Home
+                </a>
+                <a class="navbar-item" href="/bedtime">
+                    Sleep
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+
+</html>

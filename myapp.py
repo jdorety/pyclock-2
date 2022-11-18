@@ -15,7 +15,7 @@ clock.tick()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', disp_time=clock.display_time)
 
 
 @app.route('/flash')
@@ -33,8 +33,6 @@ def get_time():
 
 @app.route('/bedtime')
 def bedtime():
-    def convert_num(n):
-        return str(n)
     bedtime_hour = (clock.bedtime // 60)
     bedtime_min = (clock.bedtime % 60)
     return render_template('bedtime.html', bedtime_display=f'{bedtime_hour}:{bedtime_min}')

@@ -1,4 +1,9 @@
-body {
-    background: red;
-    color: yellow;
+.input-group {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.input {
+    width: 48%
 }

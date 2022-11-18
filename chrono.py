@@ -18,6 +18,7 @@ class Chrono:
 
     def tick(self):
         self.current_time = time.localtime()
+        self.display_time = self.current_time.strftime("%a, %b %d; %H:%M")
         self.current_hour = self.current_time.tm_hour
         self.current_min = self.current_time.tm_min
         self.current_sec = self.current_time.tm_sec
@@ -29,15 +30,15 @@ class Chrono:
         return (hour * 60) + minutes
 
     def check_time(self):
-        time = self.convert_to_minutes(self.current_hour , self.current_min)
+        t = self.convert_to_minutes(self.current_hour , self.current_min)
         bt = self.bedtime
         wu = self.wakeup
         # if (wu[0] <= self.current_hour < bt[0]) and (wu[1] <= self.current_min < bt[1]) and self.daytime is not True:
-        if (wu <= time < bt) and self.daytime is not True:
+        if (wu <= t < bt) and self.daytime is not True:
             self.daytime = True  # toggle daytime to True
             sun()  # display sun on UnicornHat
         # elif ((wu[0] > self.current_hour and wu[1] > self.current_min) or (self.current_hour >= bt[0] and self.current_min >= bt[1])) and self.daytime:
-        elif (wu > time or time >= bt) and self.daytime:
+        elif (wu > t or t >= bt) and self.daytime:
             self.daytime = False  # set daytime to False
             moon()  # display moon on UnicornHat
 
