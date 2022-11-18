@@ -1,0 +1,25 @@
+{
+  "name": "pyclock-2",
+  "version": "1.0.0",
+  "description": "You can use the [editor on GitHub](https://github.com/kyullog/picture-clock-2/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdorety/pyclock-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdorety/pyclock-2/issues"
+  },
+  "homepage": "https://github.com/jdorety/pyclock-2#readme",
+  "dependencies": {
+    "bulma": "^0.9.4"
+  }
+}
